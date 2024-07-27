@@ -67,18 +67,20 @@ int ejercicio2(){
 
 void experimentarGreedy2(int p) {
     ofstream file("resultados_ejercicio2.csv");
-    file << "n,algoritmo,tiempo_ns\n";
+    file << "n,algoritmo,tiempo_ns,k,k/n\n";
 
     for (int b = 1; b <= p; b++) {
         int n = pow(10, b);
-        //generar intervalos aleatorios
+        // Generar intervalos aleatorios
         vector<Interval> intervalos = generarIntervalosAleatorios(n, 0, 10000);
 
         auto inicio = chrono::high_resolution_clock::now();
-        greedy2(intervalos);
+        vector<int> solucion = greedy2(intervalos);
         auto fin = chrono::high_resolution_clock::now();
         auto duracion = chrono::duration_cast<chrono::nanoseconds>(fin - inicio);
-        file << n << ",greedy," << duracion.count() << "\n";
+
+        int k = solucion.size(); // Tamaño de la solución
+        file << n << ",greedy," << duracion.count() << "," << k << "," << static_cast<double>(k) / n << "\n";
     }
 
     file.close();

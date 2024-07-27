@@ -1,9 +1,9 @@
 n,algoritmo,tiempo_ns
 10,lg(n),100
 10,lineal,100
-100,lg(n),300
+100,lg(n),200
 100,lineal,300
-1000,lg(n),203
+1000,lg(n),200
 1000,lineal,1200
 10000,lg(n),300
 10000,lineal,18300

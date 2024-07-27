@@ -22,6 +22,7 @@ void orden_cortes(const vector<vector<int>>& orden, const vector<int>& cortes, i
 }//Olg(n)
 
 //devuelve tanto la solucion como el orden de puntos
+//el sort se hace fuera del algoritmo
 pair<vector<vector<int>>, vector<int>> dp3(int n, vector<int> cortes, int l) {
     //agregar la longitud como punto final
     cortes.push_back(l);
@@ -50,9 +51,7 @@ pair<vector<vector<int>>, vector<int>> dp3(int n, vector<int> cortes, int l) {
     orden_cortes(orden, cortes, 0, n + 1, rpta);
 
     return make_pair(opt, rpta);
-}
-
-//complejidad total n^3 algortimo dp+ lg(n) de la recursion para el orden de cortes + n del primer sort => O(n^3)
+}//complejidad total n^3 algortimo dp+ lg(n) de la recursion para el orden de cortes + n del primer sort => O(n^3)
 
 int ejercicio3() {
     int n;
@@ -107,6 +106,7 @@ void experimentarDP3(int p) {
         //garantizamos que l es mayor a cualquier n posible
         //datos aleatorios
         vector<int> cortes = generarCortesAleatorios(n, l);
+        sort(cortes.begin(), cortes.end());
 
         auto inicio = chrono::high_resolution_clock::now();
         dp3(n, cortes, l);
